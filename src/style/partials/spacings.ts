@@ -1,4 +1,4 @@
-const enum Spacings {
+const enum spacings {
   spacing0 = 0,
   spacing1 = 8,
   spacing2 = 16,
@@ -15,4 +15,4 @@ const enum Spacings {
 const spacingScale = 1;
 
 // Export the spacingsList enum for use in other files
-export { Spacings, spacingScale };
+export { spacings, spacingScale };
