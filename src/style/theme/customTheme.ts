@@ -1,8 +1,9 @@
 'use client';
 import { Inter } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
-import { spacingScale } from '../partials/spacings';
+import { spacingScale, spacings } from '../partials/spacings';
 import { CSSProperties } from 'react';
+import { colorPalette } from '../partials/colorPalette';
 
 const inter = Inter({
   weight: ['400', '700'],
@@ -58,6 +59,14 @@ declare module '@mui/material/styles' {
     tablet: true;
     desktop: true;
     desktopHD: true;
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    primary: true;
+    secondary: true;
+    tertiary: true;
   }
 }
 
@@ -131,7 +140,68 @@ const customTheme = createTheme(
       'body-small-bold': {
         ...bodyStyle(14, true)
       }
+    },
+    components: {
+      MuiButton: {
+        defaultProps: {
+          disableRipple: true, // No more ripple, on the whole application
+        },
+        styleOverrides: {
+          root: {
+            '&:hover': {
+              backgroundColor: "#061F35",
+            },
+            '&:active': {
+              backgroundColor: "#526B81",
+            },
+            '&:disabled': {
+              color: colorPalette.white,
+              backgroundColor: colorPalette.grey5,
+            },
+          }
+        },
+        variants: [
+          {
+            props: { variant: 'primary' },
+            style: {
+              backgroundColor: colorPalette.primary,
+              color: colorPalette.white,
+            }
+          },
+          {
+            props: { variant: 'secondary' },
+            style: {
+              backgroundColor: colorPalette.secondary,
+              color: colorPalette.white,
+            }
+          },
+          {
+            props: { variant: 'outlined' },
+            style: {
+              border: `2px solid ${colorPalette.primary}`,
+              backgroundColor: colorPalette.white,
+              color: colorPalette.grey1,
+              '&.MuiButton-root': {
+                '&:hover': {
+                  backgroundColor: '#CED5DB',
+                  border: '2px solid #101D26',
+                },
+                '&.Mui-disabled': {
+                  border: `1px solid ${colorPalette.grey4}`,
+                  color: colorPalette.grey5,
+                  backgroundColor: colorPalette.white,
+                },
+                '&:active': {
+                  border: '2px solid #5C6972',
+                  backgroundColor: '#9DABB6',
 
+
+                },
+              },
+            }
+          },
+        ]
+      }
     }
   }
 )
