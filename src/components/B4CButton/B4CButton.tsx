@@ -1,16 +1,16 @@
-import { Secondary } from "@/stories/Button.stories";
-import { colorPalette } from "@/style/partials/colorPalette";
+import { spacings } from "@/style/partials/spacings";
 import { Size } from "@/ts/enums/Size";
 import { ButtonColor } from "@/ts/types/ButtonColor";
-import { Button, Typography } from "@mui/material";
-import { MouseEventHandler } from "react";
+import { Box, Button, Typography } from "@mui/material";
+import { ReactNode } from "react";
 
 interface IB4CButtonProps {
   label: string;
   disabled?: boolean;
   variant?: ButtonColor;
+  startIcon?: ReactNode;
   size?: Size;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
 }
 
 export const B4CButton = ({
@@ -18,6 +18,7 @@ export const B4CButton = ({
   disabled,
   label,
   size = Size.Normal,
+  startIcon,
   onClick,
 }: IB4CButtonProps) => {
   const sizes = {
@@ -38,9 +39,17 @@ export const B4CButton = ({
       paddingInline: `${20 * 5}px`,
     },
   };
+
+  const renderIcon = (icon: ReactNode) => {
+    if (icon) {
+      return <Box sx={{ display: "flex", marginRight: "12px" }}>{icon}</Box>;
+    }
+    return null;
+  };
   return (
     <Button
       variant={variant}
+      startIcon={renderIcon(startIcon)}
       disabled={disabled}
       onClick={onClick}
       sx={{
