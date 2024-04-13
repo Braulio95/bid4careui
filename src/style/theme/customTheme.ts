@@ -88,6 +88,10 @@ const customTheme = createTheme({
   palette: {
     primary: { main: colorPalette.primary },
     secondary: { main: colorPalette.secondary },
+    warning: { main: colorPalette.warning },
+    success: { main: colorPalette.success },
+    info: { main: colorPalette.info },
+    error: { main: colorPalette.error },
     action: { disabled: colorPalette.grey4 },
   },
 
@@ -186,6 +190,20 @@ const customTheme = createTheme({
           },
         },
       },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          fontSize: '14px',
+          color: colorPalette.white,
+          borderRadius: "7px",
+          paddingBlock: '8px'
+        },
+        colorWarning: {
+          color: colorPalette.black1
+        }
+      }
     },
     MuiButton: {
       defaultProps: {
