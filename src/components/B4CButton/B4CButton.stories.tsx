@@ -46,7 +46,7 @@ export const Outlined: Story = {
   },
 };
 
-export const disabled: Story = {
+export const Disabled: Story = {
   args: {
     variant: "primary",
     label: "Outlined Medium Sample",

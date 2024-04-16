@@ -151,6 +151,12 @@ const customTheme = createTheme({
     },
   },
   components: {
+    MuiBadge: {
+      styleOverrides: {
+
+        root: { "& .MuiBadge-badge": { borderRadius: "30px", height: "24px", border: `2px solid ${colorPalette.white}`, color: colorPalette.white } }
+      }
+    },
     MuiSwitch: {
       styleOverrides: {
         root: {
