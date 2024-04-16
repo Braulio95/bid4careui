@@ -151,6 +151,22 @@ const customTheme = createTheme({
     },
   },
   components: {
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          borderRadius: "10px",
+          paddingInline: "8px",
+          paddingBlock: "16px",
+          backgroundColor: colorPalette.primary
+
+        },
+        arrow: {
+          fontSize: "25px",
+          color: colorPalette.primary
+        },
+      }
+
+    },
     MuiBadge: {
       styleOverrides: {
 
