@@ -10,7 +10,7 @@ interface IB4CModalProps {
 
 export const B4CModal = ({ children, open, onClose }: IB4CModalProps) => {
   return (
-    <Modal keepMounted open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose}>
       <Box
         sx={{
           position: "absolute" as "absolute",

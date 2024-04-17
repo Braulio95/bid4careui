@@ -151,6 +151,52 @@ const customTheme = createTheme({
     },
   },
   components: {
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+
+          border: `1px solid ${colorPalette.grey4}`,
+          boxShadow: "none",
+
+          '&:not(:last-child)': {
+            borderBottom: 0,
+          },
+          '&::before': {
+            display: 'none',
+          },
+
+          '& .Mui-expanded': {
+            backgroundColor: colorPalette.primary,
+            color: colorPalette.white
+          },
+
+        }
+      }
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          color: colorPalette.primary,
+
+
+          padding: 0,
+          '& .MuiAccordionSummary-content': {
+            margin: 0,
+            paddingLeft: spacings.spacing2,
+          },
+
+        }
+      }
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+
+        root: {
+          padding: spacings.spacing2,
+          backgroundColor: colorPalette.grey5,
+        }
+      }
+    },
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
