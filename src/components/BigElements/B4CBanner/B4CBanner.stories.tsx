@@ -8,7 +8,7 @@ import { Size } from "@/ts/enums/Size";
 import { B4CImage } from "../B4CImage";
 
 const meta = {
-  title: "B4CComponents/B4CBanner",
+  title: "B4CComponents/BigElements/B4CBanner",
   component: B4CBanner,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

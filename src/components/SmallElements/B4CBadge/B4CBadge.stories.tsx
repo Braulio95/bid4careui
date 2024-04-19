@@ -5,7 +5,7 @@ import { B4CAvatar } from "../B4CAvatar";
 import { colorPalette } from "@/style/partials/colorPalette";
 
 const meta = {
-  title: "B4CComponents/B4CBadge",
+  title: "B4CComponents/SmallElements/B4CBadge",
   component: B4CBadge,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

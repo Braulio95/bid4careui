@@ -7,8 +7,11 @@ import Image from "next/image";
 
 interface IB4CCardProps {
   title: string;
+  subtitle?: string;
   content: string;
+  header?: string;
   buttonLabel?: string;
+  outlined?: boolean;
   imageSrc?: string;
   hasImage?: boolean;
   hasButton?: boolean;
@@ -16,34 +19,41 @@ interface IB4CCardProps {
 }
 
 export const B4CCard = ({
+  header,
   buttonLabel,
   content,
+  outlined,
   hasButton,
   hasImage,
   imageSrc,
+  subtitle,
   title,
   theme = "primary", // Default value is "primary"
 }: IB4CCardProps) => {
   const textColors = {
     primary: {
       title: colorPalette.primary,
-      content: colorPalette.black1,
+      content: colorPalette.grey1,
       backgroundColor: colorPalette.white,
+      border: colorPalette.primary,
     },
     negative: {
       title: colorPalette.white,
       content: colorPalette.white,
       backgroundColor: colorPalette.primary,
+      border: colorPalette.white,
     },
     blue: {
       title: colorPalette.primary,
       content: colorPalette.primary,
       backgroundColor: colorPalette.white,
+      border: colorPalette.primary,
     },
     backgroundImage: {
       title: colorPalette.white,
       content: colorPalette.white,
       backgroundColor: imageSrc,
+      border: colorPalette.white,
     },
   };
 
@@ -51,6 +61,7 @@ export const B4CCard = ({
     title: titleColor,
     content: contentColor,
     backgroundColor: backgroundColor,
+    border: borderColor,
   } = textColors[theme];
   return (
     <Box
@@ -61,6 +72,7 @@ export const B4CCard = ({
         boxShadow: 24,
         maxWidth: "325px",
         overflow: "hidden",
+        border: outlined ? `1px solid ${borderColor}` : "none",
         backgroundImage:
           theme === "backgroundImage" ? `url(${imageSrc})` : undefined,
         backgroundColor: backgroundColor,
@@ -75,6 +87,20 @@ export const B4CCard = ({
           width={325}
         />
       )}
+      {header && (
+        <Box
+          width="100%"
+          borderBottom={`1px solid ${borderColor}`}
+          sx={{
+            paddingBlock: spacings.spacing3,
+            paddingInline: spacings.spacing2,
+          }}
+        >
+          <Typography variant="body-normal" sx={{ color: titleColor }}>
+            {header}
+          </Typography>
+        </Box>
+      )}
       <Box
         sx={{
           paddingInline: spacings.spacing2,
@@ -87,6 +113,11 @@ export const B4CCard = ({
         <Typography variant="h5" sx={{ color: titleColor }}>
           {title}
         </Typography>
+        {subtitle && (
+          <Typography variant="body-normal" sx={{ color: colorPalette.grey4 }}>
+            {subtitle}
+          </Typography>
+        )}
         <Typography variant="body-normal" sx={{ color: contentColor }}>
           {content}
         </Typography>

@@ -5,7 +5,7 @@ import { fn } from "@storybook/test";
 import { Box, Typography } from "@mui/material";
 
 const meta = {
-  title: "B4CComponents/B4CTooltip",
+  title: "B4CComponents/SmallElements/B4CTooltip",
   component: B4CTooltip,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

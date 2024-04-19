@@ -3,7 +3,7 @@ import { fn } from "@storybook/test";
 import { B4CCard } from "./B4CCard";
 
 const meta = {
-  title: "B4CComponents/B4CCard",
+  title: "B4CComponents/Cards/B4CCard",
   component: B4CCard,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -23,6 +23,7 @@ type Story = StoryObj<typeof meta>;
 export const SimpleCard: Story = {
   args: {
     title: "Title card",
+    subtitle: "Subtitle",
     content:
       "Content for the text card he text card he text card he text card he text card he text card ",
   },
@@ -47,5 +48,35 @@ export const SimpleCardWithBackgroundImage: Story = {
     imageSrc:
       "https://img.freepik.com/foto-gratis/pintura-lago-montana-montana-al-fondo_188544-9126.jpg?t=st=1713286467~exp=1713290067~hmac=b1d3e8493213aa953d86b1d33002690de45ae7ed0d67bcd161b95bb2213bafe4&w=1380",
     theme: "backgroundImage",
+  },
+};
+
+export const OutlinedSimpleCard: Story = {
+  args: {
+    title: "Title card",
+    outlined: true,
+    content:
+      "Content for the text card he text card he text card he text card he text card he text card ",
+  },
+};
+
+export const OutlinedNegativeCard: Story = {
+  args: {
+    title: "Title card",
+    theme: "negative",
+    outlined: true,
+    content:
+      "Content for the text card he text card he text card he text card he text card he text card ",
+  },
+};
+
+export const OutlinedNegativeWithHeaderCard: Story = {
+  args: {
+    title: "Title card",
+    header: "header",
+    theme: "negative",
+    outlined: true,
+    content:
+      "Content for the text card he text card he text card he text card he text card he text card ",
   },
 };

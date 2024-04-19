@@ -11,7 +11,7 @@ import { B4CButton } from "@/components/B4CButton";
 import { Size } from "@/ts/enums/Size";
 
 const meta = {
-  title: "B4CComponents/B4CTable",
+  title: "B4CComponents/BigElements/B4CTable",
   component: B4CTable,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
