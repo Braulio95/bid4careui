@@ -1,10 +1,14 @@
+"use client";
 import { B4CLogo } from "@/assets/images/B4CLogo";
-import { Box, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
 import Link from "next/link";
 import { spacings } from "@/style/partials/spacings";
 import { colorPalette } from "@/style/partials/colorPalette";
+import { navigationTabs } from "@/constants/navigationMap";
+
 export const B4CSidebar = () => {
+  const [router, setRouter] = useState("/");
   return (
     <Box
       sx={{
@@ -13,6 +17,7 @@ export const B4CSidebar = () => {
         flexDirection: "column",
         marginLeft: "auto",
         marginTop: "5vh",
+        gap: "4vh",
       }}
     >
       <B4CLogo />
@@ -25,27 +30,45 @@ export const B4CSidebar = () => {
           gap: "32px",
         }}
       >
-        <li
-          key={"2"}
-          style={{
-            width: "100%",
-            paddingBlock: spacings.spacing2,
-            borderRadius: "8px",
-            display: "flex",
-          }}
-        >
-          <Link
-            href="/"
-            style={{
-              textDecoration: "none",
-              marginInline: "auto",
-              color: colorPalette.black1,
-            }}
-          >
-            <Typography variant="body-normal-bold">{"Dashboard"}</Typography>
-          </Link>
-        </li>
+        {navigationTabs.map(({ label, route }, index) => {
+          return (
+            <li
+              key={`${label.toLocaleLowerCase()}-${index}`}
+              onClick={() => {
+                setRouter(route);
+              }}
+              style={{
+                width: "100%",
+                paddingBlock: spacings.spacing2,
+                borderRadius: "8px",
+                display: "flex",
+                ...(router === route && {
+                  backgroundColor: colorPalette.white,
+                }),
+              }}
+            >
+              <Link
+                href={route}
+                style={{
+                  textDecoration: "none",
+                  paddingLeft: spacings.spacing6,
+                  color:
+                    router === route
+                      ? colorPalette.primary
+                      : colorPalette.black1,
+                  display: "flex",
+                  alignItems: "left",
+                }}
+              >
+                <Typography variant="body-normal-bold">{label}</Typography>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
+      <Button sx={{ color: colorPalette.black1 }}>
+        <Typography variant="body-normal-bold">Salir de la cuenta</Typography>
+      </Button>
     </Box>
   );
 };
