@@ -5,14 +5,25 @@ import React from "react";
 interface IB4CAvatar {
   alt?: string;
   imageLink?: string;
+  width?: number;
+  height?: number;
 }
 
-export const B4CAvatar = ({ alt, imageLink }: IB4CAvatar) => {
+export const B4CAvatar = ({
+  alt,
+  imageLink,
+  width = 64,
+  height = 64,
+}: IB4CAvatar) => {
   return (
     <Avatar
       alt={alt}
       src={imageLink}
-      sx={{ bgcolor: colorPalette.primary, width: "64px", height: "64px" }}
+      sx={{
+        bgcolor: colorPalette.primary,
+        width: `${width}px`,
+        height: `${height}px`,
+      }}
     />
   );
 };
