@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 const meta = {
-  title: "B4CComponents/B4CRadiobutton",
+  title: "B4CComponents/Selectors/B4CRadiobutton",
   component: B4CRadiobutton,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout

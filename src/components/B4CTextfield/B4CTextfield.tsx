@@ -1,22 +1,34 @@
 import { colorPalette } from "@/style/partials/colorPalette";
 import { spacings } from "@/style/partials/spacings";
-import { Box, Hidden, InputLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  InputLabel,
+  SxProps,
+  TextField,
+  TextFieldVariants,
+  Theme,
+  Typography,
+} from "@mui/material";
 import React, { ChangeEventHandler, FocusEventHandler } from "react";
 
 interface IB4CTextfieldProps {
+  className?: string;
   disabled?: boolean;
+  variant?: TextFieldVariants | undefined;
   error?: boolean;
   helper?: string;
   id?: string;
   isMultiline?: boolean;
-  label: string;
+  label?: string;
   placeholder?: string;
   touched?: boolean;
+  sx?: SxProps<Theme> | undefined;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const B4CTextfield = ({
+  className,
   disabled,
   error,
   helper,
@@ -25,16 +37,22 @@ export const B4CTextfield = ({
   isMultiline,
   placeholder,
   touched,
+  sx,
+  variant,
 }: IB4CTextfieldProps) => {
   return (
-    <Box display="flex" flexDirection="column">
-      <InputLabel htmlFor={id} sx={{ marginBottom: spacings.spacing1 }}>
-        <Typography variant="body-normal-bold" color={colorPalette.black1}>
-          {label}
-        </Typography>
-      </InputLabel>
+    <Box display="flex" flexDirection="column" sx={sx}>
+      {label && (
+        <InputLabel htmlFor={id} sx={{ marginBottom: spacings.spacing1 }}>
+          <Typography variant="body-normal-bold" color={colorPalette.black1}>
+            {label}
+          </Typography>
+        </InputLabel>
+      )}
       <TextField
+        variant={variant}
         inputProps={{
+          className: className,
           sx: {
             paddingBlock: "16px",
             paddingLeft: `${16 * 2}px`,
@@ -46,6 +64,7 @@ export const B4CTextfield = ({
             },
           },
         }}
+        className={className}
         id={id}
         disabled={disabled}
         multiline={isMultiline}

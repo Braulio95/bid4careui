@@ -3,5 +3,5 @@ import { colorPalette } from "@/style/partials/colorPalette";
 import { Typography } from "@mui/material";
 
 export default function Home() {
-  return <main></main>;
+  return <main>Hola mundo</main>;
 }

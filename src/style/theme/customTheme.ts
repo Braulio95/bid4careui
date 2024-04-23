@@ -88,6 +88,10 @@ const customTheme = createTheme({
   palette: {
     primary: { main: colorPalette.primary },
     secondary: { main: colorPalette.secondary },
+    warning: { main: colorPalette.warning },
+    success: { main: colorPalette.success },
+    info: { main: colorPalette.info },
+    error: { main: colorPalette.error },
     action: { disabled: colorPalette.grey4 },
   },
 
@@ -147,6 +151,74 @@ const customTheme = createTheme({
     },
   },
   components: {
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+
+          border: `1px solid ${colorPalette.grey4}`,
+          boxShadow: "none",
+
+          '&:not(:last-child)': {
+            borderBottom: 0,
+          },
+          '&::before': {
+            display: 'none',
+          },
+
+          '& .Mui-expanded': {
+            backgroundColor: colorPalette.primary,
+            color: colorPalette.white
+          },
+
+        }
+      }
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          color: colorPalette.primary,
+
+
+          padding: 0,
+          '& .MuiAccordionSummary-content': {
+            margin: 0,
+            paddingLeft: spacings.spacing2,
+          },
+
+        }
+      }
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+
+        root: {
+          padding: spacings.spacing2,
+          backgroundColor: colorPalette.grey5,
+        }
+      }
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          borderRadius: "10px",
+          paddingInline: "8px",
+          paddingBlock: "16px",
+          backgroundColor: colorPalette.primary
+
+        },
+        arrow: {
+          fontSize: "25px",
+          color: colorPalette.primary
+        },
+      }
+
+    },
+    MuiBadge: {
+      styleOverrides: {
+
+        root: { "& .MuiBadge-badge": { borderRadius: "30px", height: "24px", border: `2px solid ${colorPalette.white}`, color: colorPalette.white } }
+      }
+    },
     MuiSwitch: {
       styleOverrides: {
         root: {
@@ -186,6 +258,20 @@ const customTheme = createTheme({
           },
         },
       },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          fontWeight: 500,
+          fontSize: '14px',
+          color: colorPalette.white,
+          borderRadius: "7px",
+          paddingBlock: '8px'
+        },
+        colorWarning: {
+          color: colorPalette.black1
+        }
+      }
     },
     MuiButton: {
       defaultProps: {
