@@ -29,7 +29,8 @@ export const B4CMainArea = ({
         backgroundColor: colorPalette.white,
         border: `1px solid ${colorPalette.grey4}`,
 
-        width: "1235px",
+        width: "65vw",
+        maxWidth: "1235px",
         ...sx,
       }}
     >
