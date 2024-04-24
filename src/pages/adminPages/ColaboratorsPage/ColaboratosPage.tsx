@@ -1,5 +1,45 @@
-import React from "react";
+"use client";
+import { PageLayout } from "@/pages/PageLayout";
+import { spacings } from "@/style/partials/spacings";
+import { Box, Grid } from "@mui/material";
+import React, { useState } from "react";
+import { ColaboratorsTab } from "./ColaboratorsTab";
+import { AcceptedPage } from "./AcceptedPage";
 
 export const ColaboratosPage = () => {
-  return <div>ColaboratosPage</div>;
+  const [tab, setTab] = useState(0);
+  const colaboratorsStatus = [
+    <AcceptedPage key={"colaborators"} />,
+    <p key={"solicitudes"}>Solicitudes</p>,
+  ];
+  return (
+    <PageLayout title="Colaboradores">
+      <Grid container>
+        <Grid xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              gap: spacings.spacing3,
+              marginBottom: spacings.spacing3,
+            }}
+          >
+            <ColaboratorsTab
+              label="Registrados"
+              active={tab === 0}
+              onClick={() => setTab(0)}
+            />
+            <ColaboratorsTab
+              label="Pendientes de registrar"
+              active={tab === 1}
+              onClick={() => setTab(1)}
+            />
+          </Box>
+        </Grid>
+        <Grid xs={12} marginBottom={spacings.spacing2}>
+          {colaboratorsStatus[tab]}
+        </Grid>
+      </Grid>
+    </PageLayout>
+  );
 };
