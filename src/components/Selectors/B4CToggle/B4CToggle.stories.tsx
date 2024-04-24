@@ -23,6 +23,6 @@ export const Checked: Story = {
   args: { checked: true },
 };
 
-export const unChecked: Story = {
+export const UnChecked: Story = {
   args: { checked: false },
 };

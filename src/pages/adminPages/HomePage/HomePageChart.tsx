@@ -6,7 +6,6 @@ import { AxisOptions, Chart } from "react-charts";
 export const HomePageChart = () => {
   const { data } = useDemoConfig({
     series: 1,
-    dataType: "time",
   });
 
   const primaryAxis = React.useMemo<
@@ -31,7 +30,6 @@ export const HomePageChart = () => {
   return (
     <div
       style={{
-        display: "inline-block",
         width: "100%",
 
         height: "300px",
