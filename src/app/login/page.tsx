@@ -1,10 +1,16 @@
+"use client";
 import { B4CButton } from "@/components/B4CButton";
 import { B4CTextfield } from "@/components/B4CTextfield";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
-const page = () => {
+const Page = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setVisible(!visible);
+  };
   return (
     <Fragment>
       <Typography
@@ -22,7 +28,12 @@ const page = () => {
       </Typography>
       <B4CTextfield label="Correo elecrónico" />
       <Box>
-        <B4CTextfield label="Contraseña" />
+        <B4CTextfield
+          label="Contraseña"
+          isPassword
+          isVisible={visible}
+          onClick={handleClick}
+        />
         <Typography
           variant="body-large-bold"
           sx={{
@@ -45,4 +56,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

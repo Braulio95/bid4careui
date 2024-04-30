@@ -1,6 +1,9 @@
+import { AdminLoginCenterBlob } from "@/assets/svgIcons/backgroundIcons/AdminLoginCenterBlob";
+import { AdminLoginCornerBlob } from "@/assets/svgIcons/backgroundIcons/AdminLoginCornerBlob";
+import { AdminLoginLeftBlob } from "@/assets/svgIcons/backgroundIcons/AdminLoginLeftBlob";
 import { colorPalette } from "@/style/partials/colorPalette";
 import { spacings } from "@/style/partials/spacings";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 export default function RootLayout({
@@ -15,14 +18,41 @@ export default function RootLayout({
         height: "100vh",
         backgroundColor: colorPalette.primary,
         display: "flex",
+        flexDirection: "column",
         position: "fixed",
-        gap: "2vw",
         // Altura máxima del componente B4CMainArea
       }}
     >
+      <AdminLoginCornerBlob />
+      <AdminLoginLeftBlob />
+      <AdminLoginCenterBlob />
+      <Box
+        sx={{
+          marginInline: "auto",
+          marginTop: "6%",
+          marginBottom: "20px",
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          gap: 20,
+        }}
+      >
+        <Box sx={{ display: "flex" }}>
+          <Typography variant="h2" sx={{ color: colorPalette.white }}>
+            Bid4
+          </Typography>
+          <Typography variant="h2" sx={{ color: colorPalette.secondary }}>
+            Care
+          </Typography>
+        </Box>
+        <Typography variant="h2" sx={{ color: colorPalette.white }}>
+          Admin Login
+        </Typography>
+      </Box>
       <Box
         sx={{
           margin: "auto",
+          marginTop: 0,
           backgroundColor: colorPalette.white,
           borderRadius: "10px",
           paddingInline: spacings.spacing8,

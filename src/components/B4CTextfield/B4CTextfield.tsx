@@ -1,7 +1,11 @@
+import { NotViewPasswordIcon } from "@/assets/svgIcons/visibleIcons/NotViewPasswordIcon";
+import { ViewPasswordIcon } from "@/assets/svgIcons/visibleIcons/ViewPasswordIcon";
 import { colorPalette } from "@/style/partials/colorPalette";
 import { spacings } from "@/style/partials/spacings";
 import {
   Box,
+  IconButton,
+  InputAdornment,
   InputLabel,
   SxProps,
   TextField,
@@ -18,13 +22,16 @@ interface IB4CTextfieldProps {
   error?: boolean;
   helper?: string;
   id?: string;
+  isPassword?: boolean;
   isMultiline?: boolean;
+  isVisible?: boolean;
   label?: string;
   placeholder?: string;
   touched?: boolean;
   sx?: SxProps<Theme> | undefined;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  onClick?: () => void;
 }
 
 export const B4CTextfield = ({
@@ -33,12 +40,15 @@ export const B4CTextfield = ({
   error,
   helper,
   id,
+  isPassword,
   label,
   isMultiline,
+  isVisible,
   placeholder,
   touched,
   sx,
   variant,
+  onClick,
 }: IB4CTextfieldProps) => {
   return (
     <Box display="flex" flexDirection="column" sx={sx}>
@@ -51,11 +61,22 @@ export const B4CTextfield = ({
       )}
       <TextField
         variant={variant}
-        inputProps={{
+        type={isPassword && !isVisible ? "password" : "text"}
+        InputProps={{
+          endAdornment: isPassword && (
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={onClick}
+              edge="end"
+            >
+              {isVisible ? <NotViewPasswordIcon /> : <ViewPasswordIcon />}
+            </IconButton>
+          ),
           className: className,
           sx: {
-            paddingBlock: "16px",
-            paddingLeft: `${16 * 2}px`,
+            paddingBlock: "4px",
+            paddingLeft: `${4 * 2}px`,
+
             "&::placeholder": {
               color: colorPalette.black1, // Modifica el color del placeholder
               opacity: 1,
