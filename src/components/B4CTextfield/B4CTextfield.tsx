@@ -5,7 +5,6 @@ import { spacings } from "@/style/partials/spacings";
 import {
   Box,
   IconButton,
-  InputAdornment,
   InputLabel,
   SxProps,
   TextField,
@@ -16,6 +15,7 @@ import {
 import React, { ChangeEventHandler, FocusEventHandler } from "react";
 
 interface IB4CTextfieldProps {
+  name?: string;
   className?: string;
   disabled?: boolean;
   variant?: TextFieldVariants | undefined;
@@ -27,6 +27,7 @@ interface IB4CTextfieldProps {
   isVisible?: boolean;
   label?: string;
   placeholder?: string;
+  required?: boolean;
   touched?: boolean;
   sx?: SxProps<Theme> | undefined;
   onBlur?: FocusEventHandler<HTMLInputElement>;
@@ -35,6 +36,7 @@ interface IB4CTextfieldProps {
 }
 
 export const B4CTextfield = ({
+  name,
   className,
   disabled,
   error,
@@ -44,10 +46,12 @@ export const B4CTextfield = ({
   label,
   isMultiline,
   isVisible,
+  required,
   placeholder,
   touched,
   sx,
   variant,
+  onChange,
   onClick,
 }: IB4CTextfieldProps) => {
   return (
@@ -60,6 +64,9 @@ export const B4CTextfield = ({
         </InputLabel>
       )}
       <TextField
+        required={required}
+        name={name}
+        onChange={onChange}
         variant={variant}
         type={isPassword && !isVisible ? "password" : "text"}
         InputProps={{

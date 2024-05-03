@@ -61,7 +61,7 @@ export default function RootLayout({
           flexDirection: "column",
           maxWidth: "927px",
           maxHeight: "647px",
-          gap: spacings.spacing6,
+          gap: "3vh",
         }}
       >
         {children}

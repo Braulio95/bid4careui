@@ -5,12 +5,13 @@ import { Box, Grid } from "@mui/material";
 import React, { useState } from "react";
 import { ColaboratorsTab } from "./ColaboratorsTab";
 import { AcceptedPage } from "./AcceptedPage";
+import { PendingPage } from "./PendingPage";
 
 export const ColaboratosPage = () => {
   const [tab, setTab] = useState(0);
   const colaboratorsStatus = [
     <AcceptedPage key={"colaborators"} />,
-    <p key={"solicitudes"}>Solicitudes</p>,
+    <PendingPage key={"Pendientes"} />,
   ];
   return (
     <PageLayout title="Colaboradores">

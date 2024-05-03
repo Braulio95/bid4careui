@@ -9,6 +9,7 @@ interface IB4CButtonProps {
   disabled?: boolean;
   variant?: ButtonColor;
   startIcon?: ReactNode;
+  isSubmit?: boolean;
   size?: Size;
   onClick?: () => void;
 }
@@ -17,6 +18,7 @@ export const B4CButton = ({
   variant = "primary",
   disabled,
   label,
+  isSubmit,
   size = Size.Normal,
   startIcon,
   onClick,
@@ -48,6 +50,7 @@ export const B4CButton = ({
   };
   return (
     <Button
+      type={isSubmit ? "submit" : "button"}
       variant={variant}
       startIcon={renderIcon(startIcon)}
       disabled={disabled}
