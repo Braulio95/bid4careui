@@ -3,9 +3,15 @@ import { getAcceptedUsers, User } from "@/services/colaboratorsServices";
 import { spacings } from "@/style/partials/spacings";
 import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { SingleCollaboratorsCard } from "./SingleCollaboratorsCard";
 
 export const AcceptedPage = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpen = () => {
+    setOpenModal(!openModal);
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -35,12 +41,15 @@ export const AcceptedPage = () => {
               gap: ".8vh",
             }}
           >
-            <B4CImage
-              src="/asdasdasdas"
-              alt={`${name}-${roleId}`}
-              width={100}
-              height={100}
-            />
+            <div onClick={handleOpen} style={{ cursor: "pointer" }}>
+              <B4CImage
+                src="/asdasdasdas"
+                alt={`${name}-${roleId}`}
+                width={100}
+                height={100}
+              />
+            </div>
+
             <Typography variant="body-small-bold">{name}</Typography>
             <Typography variant="body-small" sx={{ fontSize: "14px" }}>
               {roleId}
@@ -51,6 +60,11 @@ export const AcceptedPage = () => {
           </Box>
         </Grid>
       ))}
+      <SingleCollaboratorsCard
+        userId={1}
+        open={openModal}
+        onClose={handleOpen}
+      />
     </Grid>
   );
 };

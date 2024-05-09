@@ -9,6 +9,7 @@ import { PendingPage } from "./PendingPage";
 
 export const ColaboratosPage = () => {
   const [tab, setTab] = useState(0);
+
   const colaboratorsStatus = [
     <AcceptedPage key={"colaborators"} />,
     <PendingPage key={"Pendientes"} />,

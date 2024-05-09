@@ -5,10 +5,16 @@ import React, { ReactNode } from "react";
 interface IB4CModalProps {
   children: ReactNode;
   open: boolean;
+  bgColor?: string;
   onClose?: () => void;
 }
 
-export const B4CModal = ({ children, open, onClose }: IB4CModalProps) => {
+export const B4CModal = ({
+  children,
+  open,
+  bgColor,
+  onClose,
+}: IB4CModalProps) => {
   return (
     <Modal open={open} onClose={onClose}>
       <Box
@@ -17,9 +23,7 @@ export const B4CModal = ({ children, open, onClose }: IB4CModalProps) => {
           top: "50%",
           left: "50%",
           transform: `translate(-50%, -50%)`,
-          maxWidth: "388px", // Estableciendo un ancho máximo
-          bgcolor: "background.paper",
-          boxSizing: "border-box",
+          background: bgColor ? bgColor : "white",
           borderRadius: `8px`,
           paddingX: spacings.spacing3,
           paddingY: spacings.spacing4,
