@@ -38,18 +38,15 @@ export const B4CSidebar = () => {
                 setRouter(route);
               }}
               style={{
-                width: "100%",
-                paddingBlock: spacings.spacing2,
-                borderRadius: "8px",
                 display: "flex",
-                ...(router === route && {
-                  backgroundColor: colorPalette.white,
-                }),
               }}
             >
               <Link
                 href={route}
                 style={{
+                  width: "100%",
+                  paddingBlock: spacings.spacing2,
+                  borderRadius: "8px",
                   textDecoration: "none",
                   paddingLeft: spacings.spacing6,
                   color:
@@ -58,6 +55,9 @@ export const B4CSidebar = () => {
                       : colorPalette.black1,
                   display: "flex",
                   alignItems: "left",
+                  ...(router === route && {
+                    backgroundColor: colorPalette.white,
+                  }),
                 }}
               >
                 <Typography variant="body-normal-bold">{label}</Typography>
