@@ -4,6 +4,7 @@ import { getUnacceptedUsers, User } from "@/services/colaboratorsServices";
 import { spacings } from "@/style/partials/spacings";
 import { Size } from "@/ts/enums/Size";
 import { Box, Grid, Typography } from "@mui/material";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export const PendingPage = () => {
@@ -57,6 +58,14 @@ export const PendingPage = () => {
                 {email}
               </Typography>
             </Box>
+            <Link href={"/colaboradores/user"}>
+              <Typography
+                variant={`body-small-bold`}
+                sx={{ textTransform: "none", opacity: 0.8 }}
+              >
+                Revisar solicitud
+              </Typography>
+            </Link>
             <B4CButton label="Revisar solicitud" size={Size.Small} />
           </Box>
         </Grid>

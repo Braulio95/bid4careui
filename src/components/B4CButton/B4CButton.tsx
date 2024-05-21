@@ -7,10 +7,12 @@ import { ReactNode } from "react";
 interface IB4CButtonProps {
   label: string;
   disabled?: boolean;
+  fullWidth?: boolean;
   variant?: ButtonColor;
   startIcon?: ReactNode;
   isSubmit?: boolean;
   size?: Size;
+
   onClick?: () => void;
 }
 
@@ -18,6 +20,7 @@ export const B4CButton = ({
   variant = "primary",
   disabled,
   label,
+  fullWidth,
   isSubmit,
   size = Size.Normal,
   startIcon,
@@ -56,6 +59,7 @@ export const B4CButton = ({
       disabled={disabled}
       onClick={onClick}
       sx={{
+        width: fullWidth ? "100%" : "inherit",
         paddingInline: sizes[size].paddingInline,
         paddingBlock: sizes[size].paddingBlock,
         borderRadius: "8px",
