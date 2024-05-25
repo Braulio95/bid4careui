@@ -47,40 +47,30 @@ export const B4CTable = ({
   columnVisibilityModel,
 }: IB4CTableProps) => {
   return (
-    <Box
+    <DataGrid
+      autoHeight
+      rows={dataTable}
+      columns={columns}
+      columnVisibilityModel={columnVisibilityModel}
+      disableRowSelectionOnClick
+      initialState={{
+        pagination: { paginationModel: { pageSize: 10 } },
+      }}
+      getRowClassName={(params) =>
+        params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+      }
+      slots={{
+        pagination: CustomPagination,
+      }}
       sx={{
-        width: "100%",
-        "& .super-app-theme--header": {
-          backgroundColor: colorPalette.primary,
-          color: colorPalette.white,
+        border: "none",
+        "& .even": {
+          backgroundColor: colorPalette.white,
+        },
+        "& .odd": {
+          backgroundColor: `rgba(224, 224, 224, 0.4)`,
         },
       }}
-    >
-      <DataGrid
-        autoHeight
-        rows={dataTable}
-        columns={columns}
-        columnVisibilityModel={columnVisibilityModel}
-        disableRowSelectionOnClick
-        initialState={{
-          pagination: { paginationModel: { pageSize: 10 } },
-        }}
-        getRowClassName={(params) =>
-          params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
-        }
-        slots={{
-          pagination: CustomPagination,
-        }}
-        sx={{
-          border: "none",
-          "& .even": {
-            backgroundColor: colorPalette.white,
-          },
-          "& .odd": {
-            backgroundColor: `rgba(224, 224, 224, 0.4)`,
-          },
-        }}
-      />
-    </Box>
+    />
   );
 };
