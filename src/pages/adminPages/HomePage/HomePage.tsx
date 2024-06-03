@@ -11,12 +11,13 @@ export const HomePage = () => {
   return (
     <PageLayout title="Dashboard">
       <Grid item container sx={{ marginBottom: spacings.spacing4 }}>
-        {summaryData.map(({ value, title, lastDay }, index) => {
+        {summaryData.map(({ value, title, lastDay, type }, index) => {
           return (
             <Grid item container xs={3} key={`${index}-${title}`}>
               <B4CServiceCard
                 title={title}
                 value={value}
+                type={type}
                 lastRecord={lastDay}
               />
             </Grid>

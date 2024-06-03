@@ -8,6 +8,8 @@ import {
   useGridSelector,
   GridColDef,
   GridColumnVisibilityModel,
+  GridCellParams,
+  GridRowParams,
 } from "@mui/x-data-grid";
 import { Box, Pagination, Skeleton, Typography } from "@mui/material";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -17,6 +19,7 @@ export interface IB4CTableProps {
   dataTable: any[];
   columns: GridColDef[];
   columnVisibilityModel?: GridColumnVisibilityModel | undefined;
+  onRowClick?: (params: GridRowParams) => void;
 }
 
 function CustomPagination() {
@@ -45,9 +48,11 @@ export const B4CTable = ({
   dataTable,
   columns,
   columnVisibilityModel,
+  onRowClick,
 }: IB4CTableProps) => {
   return (
     <DataGrid
+      onRowClick={onRowClick}
       autoHeight
       rows={dataTable}
       columns={columns}

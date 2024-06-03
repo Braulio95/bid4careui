@@ -1,11 +1,8 @@
 "use client";
 import { B4CTable } from "@/components/BigElements/B4CTable";
-import { B4CTag } from "@/components/SmallElements/B4CTag";
 import {
   Box,
-  Button,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   OutlinedInput,
@@ -16,13 +13,24 @@ import {
   GridCellParams,
   GridColDef,
   GridColumnHeaderParams,
+  GridRowParams,
 } from "@mui/x-data-grid";
-import React from "react";
-import { color } from "@/ts/types/colors";
+import React, { useState } from "react";
 import { PageLayout } from "@/pages/PageLayout";
 import { B4CCheckbox } from "@/components/Selectors/B4CCheckbox";
+import { EditClientModal } from "./EditClientModal";
+import { B4CButton } from "@/components/B4CButton";
+import { Size } from "@/ts/enums/Size";
 
 export const ClientsPage = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedClient, setSelectedClient] = useState(null);
+
+  const handleRowClick = (params: GridRowParams) => {
+    setSelectedClient(params.row);
+    setOpen(true);
+  };
+
   const columns: GridColDef[] = [
     {
       field: "select",
@@ -126,10 +134,47 @@ export const ClientsPage = () => {
           gap: 32,
         }}
       >
-        <Box sx={{ margin: "auto" }}>
-          <B4CTable dataTable={data} columns={columns} />
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <FormControl sx={{ minWidth: 200, mr: 2 }}>
+            <InputLabel id="status-select-label">
+              Estatus de Servicio
+            </InputLabel>
+            <Select
+              labelId="status-select-label"
+              label="Acciones en lote"
+              defaultValue=""
+              input={
+                <OutlinedInput
+                  notched
+                  sx={{
+                    "& .MuiOutlinedInput-notchedOutline": { borderWidth: 0 },
+                  }}
+                />
+              }
+            >
+              <MenuItem value="Eliminar inactivos">Eliminar inactivos</MenuItem>
+              <MenuItem value="Eliminar">Eliminar</MenuItem>
+              {/* Agrega más opciones según sea necesario */}
+            </Select>
+          </FormControl>
+          <B4CButton label="Aplicar" size={Size.Small} />
+        </Box>
+        <Box
+          sx={{
+            margin: "auto",
+            flexWrap: "wrap",
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <B4CTable
+            dataTable={data}
+            columns={columns}
+            onRowClick={handleRowClick}
+          />
         </Box>
       </Box>
+      <EditClientModal open={open} onClose={() => setOpen(false)} />
     </PageLayout>
   );
 };

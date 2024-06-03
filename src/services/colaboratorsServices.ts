@@ -7,7 +7,17 @@ export interface User {
   name: string;
   email: string;
   registrationDate: string;
-  roleId: number;
+  profileImg: string | null;
+  roleId: string;
+  carrerProfile: {
+    motivationLetter?: string;
+    totalServices: number,
+    reviews: number,
+    stars: number,
+    expYears: number,
+    speciality: string,
+    qualifications: { name: string }[]
+  }
 }
 
 // Definimos una interfaz para el tipo de dato de respuesta de la API

@@ -1,12 +1,12 @@
+"use client";
 import { B4CButton } from "@/components/B4CButton";
 import { B4CStarRating } from "@/components/B4CStarRating";
 import { B4CImage } from "@/components/BigElements/B4CImage";
-import { colorPalette } from "@/style/partials/colorPalette";
 import { Size } from "@/ts/enums/Size";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 
-const page = () => {
+const DetailsPage = () => {
   return (
     <Grid container gap={"16px"}>
       <Grid item xs={6}>
@@ -110,4 +110,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default DetailsPage;

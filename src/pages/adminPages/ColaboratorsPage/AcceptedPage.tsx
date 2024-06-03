@@ -1,16 +1,18 @@
-import { B4CImage } from "@/components/BigElements/B4CImage";
 import { getAcceptedUsers, User } from "@/services/colaboratorsServices";
 import { spacings } from "@/style/partials/spacings";
-import { Box, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { SingleCollaboratorsCard } from "./SingleCollaboratorsCard";
+import { colorPalette } from "@/style/partials/colorPalette";
 
 export const AcceptedPage = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [openModal, setOpenModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
-  const handleOpen = () => {
-    setOpenModal(!openModal);
+  const handleOpen = (user: User | null) => (_event: any) => {
+    setSelectedUser(user);
+    setOpenModal(!!user);
   };
 
   useEffect(() => {
@@ -27,43 +29,51 @@ export const AcceptedPage = () => {
 
   return (
     <Grid container spacing={8}>
-      {users.map(({ name, roleId, email }, index) => (
-        <Grid item xs={12} tablet={4} desktop={3} key={`${name}-${index}`}>
+      {users.map((user, index) => (
+        <Grid item xs={12} tablet={4} desktop={3} key={`${user.name}-${index}`}>
           <Box
+            onClick={handleOpen(user)}
             sx={{
               display: "flex",
               flexDirection: "column",
+              cursor: "pointer",
               alignItems: "center",
               maxWidth: "262px",
               borderRadius: "8px",
               boxShadow: "0px 8px 30px 0px #0000001F",
               paddingBlock: spacings.spacing4,
               gap: ".8vh",
+              "&:hover": {
+                backgroundColor: "rgba(184, 214, 255, 0.3)",
+              },
+              "&:hover img": {
+                transform: "scale(1.5)",
+                transition: "transform 0.3s ease-in-out",
+              },
             }}
           >
-            <div onClick={handleOpen} style={{ cursor: "pointer" }}>
-              <B4CImage
-                src="/asdasdasdas"
-                alt={`${name}-${roleId}`}
-                width={100}
-                height={100}
-              />
-            </div>
+            <Avatar
+              src={user.profileImg ? user.profileImg : ""}
+              alt={`${user.name}-${user.roleId}`}
+              sx={{ width: 128, height: 128 }}
+            />
 
-            <Typography variant="body-small-bold">{name}</Typography>
+            <Typography variant="body-small-bold">{user.name}</Typography>
             <Typography variant="body-small" sx={{ fontSize: "14px" }}>
-              {roleId}
+              {user.roleId}
             </Typography>
             <Typography variant="body-small" sx={{ fontSize: "14px" }}>
-              {email}
+              {user.email}
             </Typography>
           </Box>
         </Grid>
       ))}
       <SingleCollaboratorsCard
-        userId={1}
+        user={selectedUser}
         open={openModal}
-        onClose={handleOpen}
+        onClose={() => {
+          setOpenModal(false);
+        }}
       />
     </Grid>
   );

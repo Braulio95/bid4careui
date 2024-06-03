@@ -3,12 +3,19 @@ import { B4CImage } from "@/components/BigElements/B4CImage";
 import { getUnacceptedUsers, User } from "@/services/colaboratorsServices";
 import { spacings } from "@/style/partials/spacings";
 import { Size } from "@/ts/enums/Size";
-import { Box, Grid, Typography } from "@mui/material";
-import Link from "next/link";
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { PendingCollaboratorsCard } from "./PendingCollaboratorsCard";
 
 export const PendingPage = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
+  const handleOpen = (user: User | null) => () => {
+    setSelectedUser(user);
+    setOpenModal(!!user);
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -24,8 +31,8 @@ export const PendingPage = () => {
 
   return (
     <Grid container spacing={8}>
-      {users.map(({ name, roleId, email }, index) => (
-        <Grid item xs={12} tablet={4} desktop={3} key={`${name}-${index}`}>
+      {users.map((user, index) => (
+        <Grid item xs={12} tablet={4} desktop={3} key={`${user.name}-${index}`}>
           <Box
             sx={{
               display: "flex",
@@ -44,32 +51,34 @@ export const PendingPage = () => {
               flexDirection={"inherit"}
               sx={{ gap: ".8vh", alignItems: "center" }}
             >
-              <B4CImage
-                src="/asdasdasdas"
-                alt={`${name}-${roleId}`}
-                width={100}
-                height={100}
+              <Avatar
+                src={user.profileImg ? user.profileImg : ""}
+                alt={`${user.name}-${user.roleId}`}
+                sx={{ width: 128, height: 128 }}
               />
-              <Typography variant="body-small-bold">{name}</Typography>
+              <Typography variant="body-small-bold">{user.name}</Typography>
               <Typography variant="body-small" sx={{ fontSize: "14px" }}>
-                {roleId}
+                {user.roleId}
               </Typography>
               <Typography variant="body-small" sx={{ fontSize: "14px" }}>
-                {email}
+                {user.email}
               </Typography>
             </Box>
-            <Link href={"/colaboradores/user"}>
-              <Typography
-                variant={`body-small-bold`}
-                sx={{ textTransform: "none", opacity: 0.8 }}
-              >
-                Revisar solicitud
-              </Typography>
-            </Link>
-            <B4CButton label="Revisar solicitud" size={Size.Small} />
+            <B4CButton
+              label="Revisar solicitud"
+              size={Size.Small}
+              onClick={handleOpen(user)}
+            />
           </Box>
         </Grid>
       ))}
+      <PendingCollaboratorsCard
+        user={selectedUser}
+        open={openModal}
+        onClose={() => {
+          setOpenModal(false);
+        }}
+      />
     </Grid>
   );
 };
