@@ -5,10 +5,7 @@ import {
 } from "@mui/x-data-grid";
 import { B4CTable } from ".";
 import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
 import { Box, Typography } from "@mui/material";
-import { B4CButton } from "@/components/B4CButton";
-import { Size } from "@/ts/enums/Size";
 
 const meta = {
   title: "B4CComponents/BigElements/B4CTable",

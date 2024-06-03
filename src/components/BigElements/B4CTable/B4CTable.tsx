@@ -8,6 +8,8 @@ import {
   useGridSelector,
   GridColDef,
   GridColumnVisibilityModel,
+  GridCellParams,
+  GridRowParams,
 } from "@mui/x-data-grid";
 import { Box, Pagination, Skeleton, Typography } from "@mui/material";
 import PaginationItem from "@mui/material/PaginationItem";
@@ -17,6 +19,7 @@ export interface IB4CTableProps {
   dataTable: any[];
   columns: GridColDef[];
   columnVisibilityModel?: GridColumnVisibilityModel | undefined;
+  onRowClick?: (params: GridRowParams) => void;
 }
 
 function CustomPagination() {
@@ -45,42 +48,34 @@ export const B4CTable = ({
   dataTable,
   columns,
   columnVisibilityModel,
+  onRowClick,
 }: IB4CTableProps) => {
   return (
-    <Box
+    <DataGrid
+      onRowClick={onRowClick}
+      autoHeight
+      rows={dataTable}
+      columns={columns}
+      columnVisibilityModel={columnVisibilityModel}
+      disableRowSelectionOnClick
+      initialState={{
+        pagination: { paginationModel: { pageSize: 10 } },
+      }}
+      getRowClassName={(params) =>
+        params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
+      }
+      slots={{
+        pagination: CustomPagination,
+      }}
       sx={{
-        width: "100%",
-        "& .super-app-theme--header": {
-          backgroundColor: colorPalette.primary,
-          color: colorPalette.white,
+        border: "none",
+        "& .even": {
+          backgroundColor: colorPalette.white,
+        },
+        "& .odd": {
+          backgroundColor: `rgba(224, 224, 224, 0.4)`,
         },
       }}
-    >
-      <DataGrid
-        autoHeight
-        rows={dataTable}
-        columns={columns}
-        columnVisibilityModel={columnVisibilityModel}
-        disableRowSelectionOnClick
-        initialState={{
-          pagination: { paginationModel: { pageSize: 10 } },
-        }}
-        getRowClassName={(params) =>
-          params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
-        }
-        slots={{
-          pagination: CustomPagination,
-        }}
-        sx={{
-          border: "none",
-          "& .even": {
-            backgroundColor: colorPalette.white,
-          },
-          "& .odd": {
-            backgroundColor: `rgba(224, 224, 224, 0.4)`,
-          },
-        }}
-      />
-    </Box>
+    />
   );
 };
